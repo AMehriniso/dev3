@@ -1,6 +1,6 @@
 name: Good practices in CI/CD
 
-on: 
+on:
   push:
     branches:
       - main
