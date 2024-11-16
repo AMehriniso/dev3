@@ -17,6 +17,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
 
+      - name: Setup Node.js 16
+        uses: actions/setup-node@v3
+        with:
+            node-version: '16'
+
       - name: Install Vault CLI
         run: |
           curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
