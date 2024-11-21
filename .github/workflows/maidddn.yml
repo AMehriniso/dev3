@@ -1,43 +1,50 @@
-name: Secure CI/CD with Vault
+name: Good practices in CI/CD
 
-on:
+on: 
   push:
     branches:
       - main
 
 jobs:
-  secure-build:
-    runs-on: ubuntu-22.04 
+  build:
+    runs-on: ubuntu-22.04
     timeout-minutes: 30
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-
-      - name: Setup Node.js 16
-        uses: actions/setup-node@v3
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
         with:
-            node-version: '16'
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      - name: Install dependencies
+        run: npm install
+      - name: Build application
+        run: npm run build
 
-      - name: Install Vault CLI
+  tests:
+    runs-on: ubuntu-22.04
+    needs: build
+    timeout-minutes: 30
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Run tests
+        run: npm test
+  
+  deploy:
+    runs-on: ubuntu-22.04
+    needs: test
+    timeout-minutes: 30
+    environment: production 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Deploy application
+        env:  
+          DEPLOY_PATH: /usr/share/nginx/html
         run: |
-          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-          sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-          sudo apt-get update && sudo apt-get install vault
-
-      - name: Fetch secrets from Vault
-        env:
-          VAULT_ADDR: ${{ secrets.VAULT_ADDR }}
-          VAULT_TOKEN: ${{ secrets.VAULT_TOKEN }}
-        run: |
-          SECRET=$(vault kv get -field=MY_SECRET secret/ci-cd)
-          echo "::add-mask::$SECRET"
-          echo "Секрет успешно получен и скрыт в логах"
-
-      - name: Use secret in build
-        run: |
-          echo "Using secret in the build process"
-        
+          echo "Deploying to $DEPLOY_PATH"
+          ./deploy.sh
