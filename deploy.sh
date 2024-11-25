@@ -15,20 +15,18 @@ if [ ! -d "dist" ]; then
   exit 1
 fi
 
-# Проверка, что папка dist не пуста
+# Проверка, что папка dist содержит файлы
 if [ -z "$(ls -A dist)" ]; then
   echo "Error: Directory 'dist' is empty. Build process did not generate any files. Exiting..."
   exit 1
 fi
 
-echo "Starting deployment..."
+echo "Starting deployment to $DEPLOY_PATH..."
 
-# Создание директории, если она не существует
-echo "Ensuring deployment directory exists..."
-mkdir -p "$DEPLOY_PATH"
+# Убедиться, что директория для деплоя существует
+sudo mkdir -p "$DEPLOY_PATH"
 
-# Копирование сгенерированных файлов в директорию деплоя
-echo "Copying files to $DEPLOY_PATH..."
-cp -r dist/* "$DEPLOY_PATH"
+# Копировать файлы в директорию деплоя
+sudo cp -r dist/* "$DEPLOY_PATH"
 
 echo "Deployment completed successfully."
