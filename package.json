@@ -4,7 +4,7 @@
   "description": "An example project for demonstrating good practices in CI/CD pipelines.",
   "main": "index.js",
   "scripts": {
-    "build": "echo 'Building application...' && mkdir -p dist && touch dist/index.html",
+    "build": "mkdir -p dist && echo '<html><body>Hello World</body></html>' > dist/index.html",
     "test": "echo 'Running tests...' && exit 0",
     "deploy": "echo 'Deploying application...' && ./deploy.sh"
   },
