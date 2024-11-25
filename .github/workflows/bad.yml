@@ -28,4 +28,6 @@ jobs:
       - name: Ensure deploy script is executable
         run: chmod +x ./deploy.sh
       - name: Deploy application
-        run: ./deploy.sh
+        run:  |
+          echo "Deploying to $DEPLOY_PATH"
+          ./deploy.sh
