@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+# Остановить выполнение скрипта при ошибке
 set -e
 
 # Проверка, что переменная окружения DEPLOY_PATH задана
@@ -11,7 +11,13 @@ fi
 
 # Проверка, что папка dist существует
 if [ ! -d "dist" ]; then
-  echo "Error: Directory 'dist' does not exist. Please build the project before deploying. Exiting..."
+  echo "Error: Directory 'dist' does not exist. Please run 'npm run build' before deploying. Exiting..."
+  exit 1
+fi
+
+# Проверка, что папка dist не пуста
+if [ -z "$(ls -A dist)" ]; then
+  echo "Error: Directory 'dist' is empty. Build process did not generate any files. Exiting..."
   exit 1
 fi
 
