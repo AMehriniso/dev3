@@ -1,12 +1,13 @@
 {
-  "name": "ci-cd-example",
+  "name": "ci-cd-good-practices",
   "version": "1.0.0",
-  "description": "Example project demonstrating good CI/CD practices",
+  "description": "A project demonstrating good practices in CI/CD with GitHub Actions",
   "main": "index.js",
   "scripts": {
-    "build": "echo 'Building application...' && mkdir -p dist && echo '<h1>Hello, CI/CD!</h1>' > dist/index.html",
+    "build": "echo 'Building application...' && mkdir -p dist && echo '<html><body><h1>App Built!</h1></body></html>' > dist/index.html",
     "test": "echo 'Running tests...' && exit 0"
   },
+  "keywords": [],
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {},
