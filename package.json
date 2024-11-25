@@ -5,6 +5,7 @@
   "main": "index.js",
  "scripts": {
   "build": "mkdir -p dist && echo '<html><body><h1>App Built!</h1></body></html>' > dist/index.html",
+
   "test": "echo 'Running tests...' && exit 0"
 }
 
