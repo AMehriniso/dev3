@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "A project demonstrating good practices in CI/CD with GitHub Actions",
   "main": "index.js",
- "scripts": {
-  "build": "mkdir -p dist && echo '<html><body><h1>App Built!</h1></body></html>' > dist/index.html",
-  "test": "echo 'Running tests...' && exit 0"
-}
-
+  "scripts": {
+    "build": "mkdir -p dist && echo '<html><body><h1>App Built!</h1></body></html>' > dist/index.html",
+    "test": "echo 'Running tests...' && exit 0"
+  },
   "keywords": [],
   "author": "Your Name",
   "license": "MIT",
