@@ -1,16 +1,14 @@
 {
-  "name": "ci-cd-good-practices",
+  "name": "ci-cd-example",
   "version": "1.0.0",
-  "description": "A project with CI/CD pipeline",
+  "description": "Example project demonstrating good CI/CD practices",
   "main": "index.js",
   "scripts": {
-    "build": "mkdir -p dist && echo '<html><body><h1>Hello, CI/CD!</h1></body></html>' > dist/index.html",
-    "test": "echo 'Running tests...' && exit 0",
-    "deploy": "echo 'Deploying application...' && ./deploy.sh"
+    "build": "echo 'Building application...' && mkdir -p dist && echo '<h1>Hello, CI/CD!</h1>' > dist/index.html",
+    "test": "echo 'Running tests...' && exit 0"
   },
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {},
-  "devDependencies": {},
-  "engines": {
-    "node": ">=16.0.0"
-  }
+  "devDependencies": {}
 }
