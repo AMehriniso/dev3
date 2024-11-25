@@ -1,16 +1,13 @@
 {
   "name": "ci-cd-good-practices",
   "version": "1.0.0",
-  "description": "An example project for CI/CD pipelines with GitHub Actions.",
+  "description": "A project with CI/CD pipeline",
   "main": "index.js",
   "scripts": {
     "build": "mkdir -p dist && echo '<html><body><h1>Hello, CI/CD!</h1></body></html>' > dist/index.html",
     "test": "echo 'Running tests...' && exit 0",
     "deploy": "echo 'Deploying application...' && ./deploy.sh"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "dependencies": {},
   "devDependencies": {},
   "engines": {
